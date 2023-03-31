@@ -7,6 +7,19 @@ Template for creating ds simple projects
 - pyenv
 - python==3.9.8
 
+
+### External Data
+You will need a GeoJSON file with the shapes of the different ZIP code areas in King County for this notebook to work.
+ 
+A GeoJSON file can be found on the official [Open Data portal of Seattle](https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::zip-codes/explore?location=47.496805%2C-121.972750%2C9.58).
+
+Use a simplyfier service like [Mapshaper](https://mapshaper.org/) to reduce file size and complexity. Otherwise the Jupyter notebook could crash when it comes to plotting maps.
+
+Define the path to your file in the second code block of the notebook:
+
+    with open('data/kc_zipcode_geo.json') as gj:
+        zip_geojson = json.load(gj)
+
 ## Setup
 
 One of the first steps when starting any data science project is to create a virtual environment. For this project you have to create this environment from scratch yourself. However, you should be already familiar with the commands you will need to do so. The general workflow consists of... 
@@ -25,25 +38,12 @@ pip freeze > requirements.txt
 
 *Note: In rare case such a requirements file created with `pip freeze` might not ensure that another (especially M1 chip) user can install and execute it properly. This can happen if libraries need to be compiled (e.g. SciPy). Then it also depends on environment variables and the actual system libraries.*
 
-### Unit testing (Optional)
-
-If you write python scripts for your data processing methods, you can also write unit tests. In order to run the tests execute in terminal:
-
-```bash
-pytest
-```
-
-This command will execute all the functions in your project that start with the word **test**.
 
 
 ### Environment
 
-This repo contains a requirements.txt file with a list of all the packages and dependencies you will need. Before you install the virtual environment, make sure to install postgresql if you haven't done it before.
+This repo contains a requirements.txt file with a list of all the packages and dependencies you will need. 
 
-```bash
-brew update
-brew install postgresql
-```
 
 In order to install the environment you can use the following commands:
 
